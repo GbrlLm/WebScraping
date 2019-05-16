@@ -1,63 +1,40 @@
 function montarPaginaNerd(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
-    let aaa = documento.querySelectorAll(".listagem-linha .span4 a.produto-sobrepor");
+    let aaa = documento.querySelectorAll(".listagem-linha .span4 a");
     aaa.forEach(item => {
-        console.log(item.title)
+        console.log(item)
+        var div2 = document.createElement("a");
+        div2.setAttribute("href", item.href);
+        div2.innerHTML = item.title;
+        document.body.appendChild(div2);
     });
-    // var tempObj = [];
-    // for(let i =0; i<aaa.length; i++){
-    //     tempObj[i] = {info:""};
-    //     tempObj[i].info = aaa[i].children[0].id;
-    //     console.log(tempObj[i]);
-    // }
-    // .forEach(div => {
-    //     var bbb = div.children;
-    //     console.log('Nerd ' + bbb);
-    // //     // Array.from(aaa).forEach(x => {
-    // //     //     var noticia = x.children;
-    // //     //     Array.from(noticia).forEach(y => document.body.appendChild(y));
-    // //     // });
-    // //     // var div2 = document.createElement("div");
-    // //     // div2.innerHTML = p;
-    // //     // document.body.appendChild(div2);
-    // });
 }
 
 function montarPaginaGeek(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
-    let aaa = documento.querySelectorAll(".listagem-linha");
-    console.log(aaa);
-    // .forEach(div => {
-    //     var bbb = div.children;
-    //     console.log('geek ' + bbb);
-    // //     // Array.from(aaa).forEach(x => {
-    // //     //     var noticia = x.children;
-    // //     //     Array.from(noticia).forEach(y => document.body.appendChild(y));
-    // //     // });
-    // //     // var div2 = document.createElement("div");
-    // //     // div2.innerHTML = p;
-    // //     // document.body.appendChild(div2);
-    // });
+    let aaa = documento.querySelectorAll(".listagem-linha .span4 a");
+    aaa.forEach(item => {
+        console.log(item)
+        var div2 = document.createElement("a");
+        div2.setAttribute("href", item.href);
+        div2.innerHTML = item.title;
+        document.body.appendChild(div2);
+    });
 }
 
 function montarPaginaComic(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
-    let aaa = documento.querySelectorAll(".listagem-linha ");
-    console.log(aaa);
-    // .forEach(div => {
-    //     var bbb = div.children;
-    //     console.log('comic ' +bbb);
-    // //     // Array.from(aaa).forEach(x => {
-    // //     //     var noticia = x.children;
-    // //     //     Array.from(noticia).forEach(y => document.body.appendChild(y));
-    // //     // });
-    // //     // var div2 = document.createElement("div");
-    // //     // div2.innerHTML = p;
-    // //     // document.body.appendChild(div2);
-    // });
+    let aaa = documento.querySelectorAll(".listagem-linha .span3 a");
+    aaa.forEach(item => {
+        console.log(item)
+        var div2 = document.createElement("a");
+        div2.setAttribute("href", item.href);
+        div2.innerHTML = item.title;
+        document.body.appendChild(div2);
+    });
 }
 
 function ImaginarioReq() {
