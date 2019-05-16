@@ -1,39 +1,43 @@
 function montarPaginaNerd(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
-    let aaa = documento.querySelectorAll(".listagem-linha .span4 a");
-    aaa.forEach(item => {
-        console.log(item)
-        var div2 = document.createElement("a");
-        div2.setAttribute("href", item.href);
-        div2.innerHTML = item.title;
-        document.body.appendChild(div2);
+
+    let elementos = documento.querySelectorAll(".listagem-linha .span4 .listagem-item");
+
+    elementos.forEach(item => {
+        console.log(item);
+        item.children[3].style.display = "none";
+        item.children[4].style.display = "none";
+        item.children[5].style.display = "none";
+        document.body.appendChild(item);
     });
 }
 
 function montarPaginaGeek(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
-    let aaa = documento.querySelectorAll(".listagem-linha .span4 a");
-    aaa.forEach(item => {
-        console.log(item)
-        var div2 = document.createElement("a");
-        div2.setAttribute("href", item.href);
-        div2.innerHTML = item.title;
-        document.body.appendChild(div2);
+
+    let  elementos = documento.querySelectorAll(".listagem-linha .span4 .listagem-item");
+
+    elementos.forEach(item => {
+        console.log(item);
+        item.children[3].style.display = "none";
+        item.children[4].style.display = "none";
+        item.children[5].style.display = "none";
+        document.body.appendChild(item);
     });
 }
 
 function montarPaginaComic(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
-    let aaa = documento.querySelectorAll(".listagem-linha .span3 a");
-    aaa.forEach(item => {
-        console.log(item)
-        var div2 = document.createElement("a");
-        div2.setAttribute("href", item.href);
-        div2.innerHTML = item.title;
-        document.body.appendChild(div2);
+
+    let  elementos = documento.querySelectorAll(".listagem-linha .span3 .listagem-item");
+
+    elementos.forEach(item => {
+        console.log(item);
+        item.children[3].style.display = "none";
+        document.body.appendChild(item);
     });
 }
 
