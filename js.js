@@ -1,21 +1,21 @@
-// import $ from 'jquery';
-// import 'slick-carousel';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
-
 function montarPaginaNerd(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
 
     let elementos = documento.querySelectorAll(".listagem-linha .span4 .listagem-item");
+    let div = document.createElement('div');
 
     elementos.forEach(item => {
         console.log(item);
         item.children[3].style.display = "none";
         item.children[4].style.display = "none";
         item.children[5].style.display = "none";
-        document.body.appendChild(item);
+        div.setAttribute("class", "carousel");
+        div.appendChild(item);
+        document.body.appendChild(div);
     });
+
+    aaa();
 }
 
 function montarPaginaGeek(pagina){
@@ -88,8 +88,7 @@ function ComicStoreReq() {
     xhttp.send();
 }
 
-
-// $(document).ready(()=>{
+function aaa() {
     $('.carousel').slick({
         dots: true,
         infinite: true,
@@ -97,4 +96,4 @@ function ComicStoreReq() {
         slidesToShow: 4,
         slidesToScroll: 4,
       });
-// });
+}
