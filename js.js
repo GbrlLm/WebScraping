@@ -1,3 +1,8 @@
+// import $ from 'jquery';
+// import 'slick-carousel';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+
 function montarPaginaNerd(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
@@ -82,3 +87,14 @@ function ComicStoreReq() {
     
     xhttp.send();
 }
+
+
+// $(document).ready(()=>{
+    $('.carousel').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+      });
+// });
