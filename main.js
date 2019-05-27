@@ -1,24 +1,4 @@
-function montarPaginaNerd(pagina){
-    var parser = new DOMParser();
-    var documento = parser.parseFromString(pagina, "text/html");
-
-    let elementos = documento.querySelectorAll(".listagem-linha .span4 .listagem-item");
-    let div = document.createElement('div');
-
-    elementos.forEach(item => {
-        console.log(item);
-        item.children[3].style.display = "none";
-        item.children[4].style.display = "none";
-        item.children[5].style.display = "none";
-        div.setAttribute("class", "carousel");
-        div.appendChild(item);
-        document.body.appendChild(div);
-    });
-
-    carrossel();
-}
-
-function montarPaginaGeek(pagina){
+function montarPaginasGeekNerd(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
 
@@ -62,7 +42,7 @@ function ImaginarioReq() {
     
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            // montarPaginaNerd(this.responseText);
+            montarPaginasGeekNerd(this.responseText);
             console.log("OK imaginario");
         }
     };
@@ -76,7 +56,7 @@ function StudioGeekReq() {
     
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            // montarPaginaGeek(this.responseText);
+            montarPaginasGeekNerd(this.responseText);
             console.log("OK studio");
         }
     };
@@ -90,7 +70,7 @@ function ComicStoreReq() {
     
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            // montarPaginaComic(this.responseText);
+            montarPaginaComic(this.responseText);
             console.log("OK comic");
         }
     };
@@ -99,8 +79,7 @@ function ComicStoreReq() {
 }
 
 window.onload = function() {
-    ImaginarioReq();
-    StudioGeekReq();
+    montarPaginasGeekNerd();
     ComicStoreReq();
   };
 
