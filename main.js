@@ -79,7 +79,8 @@ function ComicStoreReq() {
 }
 
 window.onload = function() {
-    montarPaginasGeekNerd();
+    ImaginarioReq();
+    StudioGeekReq();
     ComicStoreReq();
   };
 
