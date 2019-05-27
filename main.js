@@ -62,7 +62,7 @@ function ImaginarioReq() {
     
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            montarPaginaNerd(this.responseText);
+            // montarPaginaNerd(this.responseText);
             console.log("OK imaginario");
         }
     };
@@ -76,7 +76,7 @@ function StudioGeekReq() {
     
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            montarPaginaGeek(this.responseText);
+            // montarPaginaGeek(this.responseText);
             console.log("OK studio");
         }
     };
@@ -90,13 +90,19 @@ function ComicStoreReq() {
     
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            montarPaginaComic(this.responseText);
+            // montarPaginaComic(this.responseText);
             console.log("OK comic");
         }
     };
     
     xhttp.send();
 }
+
+window.onload = function() {
+    ImaginarioReq();
+    StudioGeekReq();
+    ComicStoreReq();
+  };
 
 function carrossel() {
     $('.carousel').slick({
