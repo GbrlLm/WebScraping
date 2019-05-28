@@ -6,7 +6,6 @@ function montarPaginasGeekNerd(pagina){
     let div = document.createElement('div');
 
     elementos.forEach(item => {
-        console.log(item);
         item.children[3].style.display = "none";
         item.children[4].style.display = "none";
         item.children[5].style.display = "none";
@@ -14,8 +13,6 @@ function montarPaginasGeekNerd(pagina){
         div.appendChild(item);
         document.body.appendChild(div);
     });
-
-    carrossel();
 }
 
 function montarPaginaComic(pagina){
@@ -26,70 +23,97 @@ function montarPaginaComic(pagina){
     let div = document.createElement('div');
 
     elementos.forEach(item => {
-        console.log(item);
         item.children[3].style.display = "none";
         div.setAttribute("class", "carousel");
         div.appendChild(item);
         document.body.appendChild(div);
     });
-
-    carrossel();
 }
 
-function ImaginarioReq() {
+function ImaginarioNerdReq() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "https://www.imaginarionerd.com.br/", true);
-    
+
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             montarPaginasGeekNerd(this.responseText);
             console.log("OK imaginario");
         }
     };
-    
     xhttp.send();
 }
 
 function StudioGeekReq() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "https://www.studiogeek.com.br/", true);
-    
+
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             montarPaginasGeekNerd(this.responseText);
             console.log("OK studio");
         }
     };
-    
     xhttp.send();
 }
 
 function ComicStoreReq() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "https://www.comicstore.com.br/", true);
-    
+
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             montarPaginaComic(this.responseText);
             console.log("OK comic");
+            carrossel();
         }
     };
-    
     xhttp.send();
 }
 
 window.onload = function() {
-    ImaginarioReq();
+    ImaginarioNerdReq();
     StudioGeekReq();
     ComicStoreReq();
-  };
+};
 
 function carrossel() {
-    $('.carousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-      });
+    var aaa = document.querySelectorAll(".carousel");
+    console.log(aaa);
+    aaa.forEach( aaa => {
+        console.log(aaa.className);
+        $(`.${aaa.className}`).slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+        });
+        // $(aaa.className).each(function(){
+        //     var slickInduvidual = $(this);
+        //     slickInduvidual.slick({
+        //         dots: true,
+        //         infinite: true,
+        //         speed: 500,
+        //         slidesToShow: 4,
+        //         slidesToScroll: 4,
+        //     });
+        // })
+    });
+    console.log("aaa");
 }
+
+// aaa.forEach(div => {div.slick({
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 4,
+//     slidesToScroll: 4,
+//   });
+// })
+// $('.carousel').slick({
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 4,
+//     slidesToScroll: 4,
+//   });
