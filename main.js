@@ -58,6 +58,7 @@ function montarPaginasGeekNerd(pagina, nomePag){
         item.children[5].style.display = "none";
         div.setAttribute("class", "carousel");
         div.appendChild(item);
+        logo.setAttribute("class", "logo");
         divPagina.appendChild(logo);
         divPagina.appendChild(div);
     });
@@ -78,6 +79,7 @@ function montarPaginaComic(pagina, nomePag){
         item.children[3].style.display = "none";
         div.setAttribute("class", "carousel");
         div.appendChild(item);
+        logo.setAttribute("class", "logo");
         divPagina.appendChild(logo);
         divPagina.appendChild(div);
     });
@@ -92,6 +94,8 @@ function carrossel(){
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,
+        // autoplay: true,
+        // autoplaySpeed: 2000,
     });
     console.log("fim do carrosel");
 }
