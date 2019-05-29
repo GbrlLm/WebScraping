@@ -8,21 +8,25 @@ function getUrlObject(){
 
 window.onload = async function() {
     getUrlObject().forEach(async item => {
-        let result = await makeRequest("GET",item.url);  
-        item.callback(result);
+        console.log("antes result", item.url)
+        await makeRequest("GET", item.url, item.callback);
+        console.log("result ", item.url);
     });
     console.log("carrosel");
-    await carrossel();
+    carrossel();
 
 };
 
-function makeRequest(method, url) {
-    return new Promise(function (resolve, reject) {
+function makeRequest(method, url, pagina) {
+    new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = function () {
+        xhr.open(method, url, false);
+        xhr.onreadystatechange = async function () {
             if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
+                console.log("resolve makeReq");
+                console.log("pagina",pagina);
+                pagina(xhr.response);
+                resolve({resultado: "OK"});
             } else {
                 reject({
                     status: this.status,
@@ -37,7 +41,7 @@ function makeRequest(method, url) {
             });
         };
         xhr.send();
-    });
+    }); 
 }
 
 function montarPaginasGeekNerd(pagina){
@@ -75,25 +79,17 @@ function montarPaginaComic(pagina){
 }
 
 function carrossel(){
-    return new Promise(function (resolve, reject) {
-        let classe = document.querySelectorAll(".carousel");
-        if (classe.length > 0) {
-                resolve(
+    
+        document.querySelectorAll(".carousel");
+
                     $('.carousel').slick({
                     dots: true,
                     infinite: true,
                     speed: 500,
                     slidesToShow: 4,
                     slidesToScroll: 4,
-                  })
-                );
-        } else {
-            reject(
-                console.log("Erro!")
-            );
-        }
+                  });
     console.log("fim do carrosel");
-    });
 }
 
 
@@ -128,6 +124,7 @@ function carrossel(){
 //     slidesToScroll: 4,
 //   });
 // })
+
 // $('.carousel').slick({
 //     dots: true,
 //     infinite: true,
