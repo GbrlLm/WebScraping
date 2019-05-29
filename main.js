@@ -1,3 +1,45 @@
+function getUrlObject(){
+    return [ 
+        {url:"https://www.comicstore.com.br/", callback: montarPaginaComic},
+        {url: "https://www.studiogeek.com.br/", callback: montarPaginasGeekNerd}, 
+        {url: "https://www.imaginarionerd.com.br/", callback: montarPaginasGeekNerd}
+    ]
+}
+
+window.onload = async function() {
+    getUrlObject().forEach(async item => {
+        let result = await makeRequest("GET",item.url);  
+        item.callback(result);
+    });
+    console.log("carrosel");
+    await carrossel();
+
+};
+
+function makeRequest(method, url) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
+}
+
 function montarPaginasGeekNerd(pagina){
     var parser = new DOMParser();
     var documento = parser.parseFromString(pagina, "text/html");
@@ -13,6 +55,7 @@ function montarPaginasGeekNerd(pagina){
         div.appendChild(item);
         document.body.appendChild(div);
     });
+    console.log("pagina montada");
 }
 
 function montarPaginaComic(pagina){
@@ -28,79 +71,54 @@ function montarPaginaComic(pagina){
         div.appendChild(item);
         document.body.appendChild(div);
     });
+    console.log("pagina montada");
 }
 
-function ImaginarioNerdReq() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://www.imaginarionerd.com.br/", true);
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            montarPaginasGeekNerd(this.responseText);
-            console.log("OK imaginario");
+function carrossel(){
+    return new Promise(function (resolve, reject) {
+        let classe = document.querySelectorAll(".carousel");
+        if (classe.length > 0) {
+                resolve(
+                    $('.carousel').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                  })
+                );
+        } else {
+            reject(
+                console.log("Erro!")
+            );
         }
-    };
-    xhttp.send();
-}
-
-function StudioGeekReq() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://www.studiogeek.com.br/", true);
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            montarPaginasGeekNerd(this.responseText);
-            console.log("OK studio");
-        }
-    };
-    xhttp.send();
-}
-
-function ComicStoreReq() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://www.comicstore.com.br/", true);
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            montarPaginaComic(this.responseText);
-            console.log("OK comic");
-            carrossel();
-        }
-    };
-    xhttp.send();
-}
-
-window.onload = function() {
-    ImaginarioNerdReq();
-    StudioGeekReq();
-    ComicStoreReq();
-};
-
-function carrossel() {
-    var aaa = document.querySelectorAll(".carousel");
-    console.log(aaa);
-    aaa.forEach( aaa => {
-        console.log(aaa.className);
-        $(`.${aaa.className}`).slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-        });
-        // $(aaa.className).each(function(){
-        //     var slickInduvidual = $(this);
-        //     slickInduvidual.slick({
-        //         dots: true,
-        //         infinite: true,
-        //         speed: 500,
-        //         slidesToShow: 4,
-        //         slidesToScroll: 4,
-        //     });
-        // })
+    console.log("fim do carrosel");
     });
-    console.log("aaa");
 }
+
+
+    
+// var classes = document.querySelectorAll(".carousel");
+// classes.forEach( item => {
+//     $(`.${item.className}`).slick({
+//         dots: true,
+//         infinite: true,
+//         speed: 500,
+//         slidesToShow: 4,
+//         slidesToScroll: 4,
+//     });
+// });
+
+// $(aaa.className).each(function(){
+//     var slickInduvidual = $(this);
+//     slickInduvidual.slick({
+//         dots: true,
+//         infinite: true,
+//         speed: 500,
+//         slidesToShow: 4,
+//         slidesToScroll: 4,
+//     });
+// })
 
 // aaa.forEach(div => {div.slick({
 //     dots: true,
