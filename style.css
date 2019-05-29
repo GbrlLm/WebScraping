@@ -33,5 +33,9 @@ body{
     color: black;
 }
 
+.produto-sku, .acoes-produto, .bandeiras-produto, .acoes-produto-responsiva{
+    display: none;
+}
+
 /* .slick-arrow, .slick-dots{
 } */

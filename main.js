@@ -53,9 +53,6 @@ function montarPaginasGeekNerd(pagina, nomePag){
     let divPagina = document.querySelector(`.${nomePag}`);
 
     elementos.forEach(item => {
-        item.children[3].style.display = "none";
-        item.children[4].style.display = "none";
-        item.children[5].style.display = "none";
         div.setAttribute("class", "carousel");
         div.appendChild(item);
         logo.setAttribute("class", "logo");
@@ -76,7 +73,6 @@ function montarPaginaComic(pagina, nomePag){
     let divPagina = document.querySelector(`.${nomePag}`);
 
     elementos.forEach(item => {
-        item.children[3].style.display = "none";
         div.setAttribute("class", "carousel");
         div.appendChild(item);
         logo.setAttribute("class", "logo");
