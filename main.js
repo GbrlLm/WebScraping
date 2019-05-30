@@ -8,10 +8,8 @@ function getUrlObject(){
 
 window.onload = async function() {
     getUrlObject().forEach(async item => {
-        console.log("antes result")
         await makeRequest("GET", item.url, item.callback, item.title);
     });
-    console.log("carrosel");
     carrossel();
 };
 
@@ -21,7 +19,7 @@ function makeRequest(method, url, montarPagina, nomePag) {
         xhr.open(method, url, false);
         xhr.onreadystatechange = async function () {
             if (this.status >= 200 && this.status < 300) {
-                console.log("resolve makeReq");
+
                 montarPagina(xhr.response, nomePag);
 
                 resolve({resultado: "OK"});
@@ -58,7 +56,6 @@ function montarPaginasGeekNerd(pagina, nomePag){
         divPagina.appendChild(logo);
         divPagina.appendChild(div);
     });
-    console.log("pagina montada");
 }
 
 function montarPaginaComic(pagina, nomePag){
@@ -66,7 +63,7 @@ function montarPaginaComic(pagina, nomePag){
     var documento = parser.parseFromString(pagina, "text/html");
     
 
-    let  elementos = documento.querySelectorAll(".listagem-linha .span3 .listagem-item");
+    let elementos = documento.querySelectorAll(".listagem-linha .span3 .listagem-item");
     let logo = documento.querySelector(".span3 .logo a");
     let div = document.createElement('div');
     let divPagina = document.querySelector(`.${nomePag}`);
@@ -78,7 +75,6 @@ function montarPaginaComic(pagina, nomePag){
         divPagina.appendChild(logo);
         divPagina.appendChild(div);
     });
-    console.log("pagina montada");
 }
 
 function carrossel(){
@@ -92,5 +88,4 @@ function carrossel(){
         autoplay: true,
         autoplaySpeed: 2000,
     });
-    console.log("fim do carrosel");
 }
