@@ -89,8 +89,8 @@ function carrossel(){
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,
-        // autoplay: true,
-        // autoplaySpeed: 2000,
+        autoplay: true,
+        autoplaySpeed: 2000,
     });
     console.log("fim do carrosel");
 }
