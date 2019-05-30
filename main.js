@@ -22,19 +22,13 @@ function makeRequest(method, url, montarPagina, nomePag) {
 
                 montarPagina(xhr.response, nomePag);
 
-                resolve({resultado: "OK"});
+                resolve(console.log("OK!"));
             } else {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
+                reject(console.log(this.status, xhr.statusText));
             }
         };
         xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
+            reject(console.log(this.status, xhr.statusText));
         };
         xhr.send();
     }); 
