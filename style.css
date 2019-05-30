@@ -10,19 +10,15 @@ body{
     height: auto;
 }
 
-.comicstore, .studiogeek, .imaginarionerd{
-    background-color: #C0C0C0;
-}
-
-.listagem-item{
-    margin: 0px 5px;
-}
-
 .imagem-produto img{
     max-width:161px;
     max-height:161px;
     width: auto;
     height: auto;
+}
+
+.listagem-item{
+    margin: 0px 5px;
 }
 
 .info-produto{
@@ -36,6 +32,3 @@ body{
 .produto-sku, .acoes-produto, .bandeiras-produto, .acoes-produto-responsiva{
     display: none;
 }
-
-/* .slick-arrow, .slick-dots{
-} */
