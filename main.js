@@ -13,17 +13,16 @@ window.onload = async function() {
     });
     console.log("carrosel");
     carrossel();
-
 };
 
-function makeRequest(method, url, pagina, nomePag) {
+function makeRequest(method, url, montarPagina, nomePag) {
     new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url, false);
         xhr.onreadystatechange = async function () {
             if (this.status >= 200 && this.status < 300) {
                 console.log("resolve makeReq");
-                pagina(xhr.response, nomePag);
+                montarPagina(xhr.response, nomePag);
 
                 resolve({resultado: "OK"});
             } else {
